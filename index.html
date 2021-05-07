@@ -1,0 +1,370 @@
+﻿<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>T.RKT</title>
+    <meta name="description" content="Je suis développeur gameplay et rendu 3D, avec un profile à la fois technique et artistique.
+    Je travail principalement avec Unity, openGL et  WebGL." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="static/css/bulma/bulma.min.css">
+    <link rel="stylesheet" media="all" type="text/css" href="static/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
+    <section class="hero" id="top">
+
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
+            <nav id="navbar" class="navbar is-fixed-top">
+                <div class="navbar-brand">
+
+                    <a class="navbar-item" href="#top">
+                        <span class="icon" style="margin-right:5px"><i class="fas fa-glasses"></i></span>
+                        <bold>T.RKT</bold>
+                    </a>
+
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+
+                <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="https://krankerapfel.fr">
+                            <i class="fab fa-lg fa-wordpress"></i>
+                        </a>
+                        <a class="navbar-item" href="https://linkedin.com/in/tahinarakotomanampison/">
+                            <i class="fab fa-lg fa-linkedin"></i>
+                        </a>
+                        <a class="navbar-item" href="https://github.com/KrankerApfel">
+                            <i class="fab fa-lg fa-github-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </section>
+    <script type="text/javascript">
+        if ($(".navbar-burger").click(function () {
+            $("#navbarMenuHeroA, .navbar-burger").toggleClass("is-active")
+        }), $(function () {
+            $("a[href*='#']:not([href='#'])").click(function () {
+                if (location.hostname == this.hostname && this.pathname.replace(/^\//, "") == location.pathname.replace(/^\//, "")) {
+                    var e = $(this.hash);
+                    (e = e.length ? e : $("[name=" + this.hash.slice(1) + "]")).length && $("html, body").animate({ scrollTop: e.offset().top }, 1e3)
+                }
+            })
+        }), screen.width <= 1e3) {
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function () {
+                var e = window.pageYOffset;
+                prevScrollpos > e ? (document.getElementById("navbar").style.top = "-50px") : (document.getElementById("navbar").style.top = "0"), prevScrollpos = e
+            }
+        }
+    </script>
+    <!-- Hero head:end -->
+    <section class="hero is-fullheight three-above">
+        <div class="hero-body">
+            <div class="container" id="header-container">
+                <figure class="image" id="profil-pic">
+                    <p class="yellow-border" id="hey">Hey !</p>
+                    <p class="blue-border" id="i-am">Ce portfolio est en cours de construction mais...</p>
+                    <img class="is-rounded" src="static\img\profil_pic.jpg" alt="photo de profil">
+                    <a href="#about-me"><p class="yellow-border" id="see-about-me">...Tu veux en savoir plus sur moi ?</p></a>
+                    <a href="#projects"><p class="blue-border" id="see-project">Ou tu préfères découvrir mes projets ?</p></a>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r80/three.min.js"></script>
+    <div id="canvas"></div>
+    <script>
+        let scene, camera, renderer, loader, rain, rainGeo, rainCount = 800, clock
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            clock = new THREE.Clock();
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            rainGeo = new THREE.Geometry();
+
+            for (let i = 0; i < rainCount; i++) {
+                rainDrop = new THREE.Vector3(
+                    Math.random() * 400 - 150,
+                    Math.random() * 500 - 250,
+                    Math.random() * 400 - 350
+                );
+
+
+                rainGeo.vertices.push(rainDrop);
+            }
+            rainMaterial = new THREE.PointsMaterial({
+                color: 0xFCF9A8,
+                size: 0.2,
+
+            });
+
+            rain = new THREE.Points(rainGeo, rainMaterial);
+            scene.add(rain);
+
+            document.addEventListener('mousemove', onmousemove, false)
+        } // end init
+
+        function animate() {
+            rainGeo.vertices.forEach(p => {
+                p.y = Math.sin(p.x + Math.cos(clock.getElapsedTime()))
+
+            });
+            rainGeo.verticesNeedUpdate = true;
+            rain.rotation.y += 0.0003;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        init();
+        animate();
+
+        function onmousemove(event) {
+            //   camera.position.x = event.clientX;
+            //  renderer.render(scene, camera);
+        }
+
+    </script>
+
+    <section class="hero is-fullheight" id="about-me">
+        <div class="hero-body">
+            <div class="container">
+                <div class="container columns is-multiline is-centered ">
+                    <div class="column is-narrow">
+                        <p class="title is-1 is-spaced" style="text-align:center;">Hey !</p>
+                        <p class="subtitle is-3">Je suis développeur gameplay et rendu 3D.</p>
+                        <p class="header-text">
+                            Attiré par les technologies <strong>AR/VR</strong>, la   <strong>simulation temps réel</strong>, la <strong>génération procédurale</strong> et la  <strong>programmation graphique</strong>,
+                            je recherche une <strong>alternance</strong> afin de devenir expert dans ces domaines.
+
+                            Déjà titulaire d'une licence mathématiques-informatique,
+                            je continu mes études en école d'informatique pour me professionnaliser dans le <strong>jeu vidéo</strong>.
+
+                            Sensible aux problématiques liées à ce secteur (inclusivité, condition de travail...), j'assiste à de nombreux salons, conférences et meet-up
+                            expérimentant de <strong>nouvelles manières de penser le jeu et son industrie</strong> ! 😉
+                        </p>
+                        <br /><br /><br /><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero  is-fullheight" id="projects">
+
+        <div class="columns">
+            <div class="column">
+                <h1 class="title has-text-centered">Projets</h1>
+                <div class="tabs is-centered is-medium is-toggle is-toggle-rounded">
+                    <ul>
+                        <li class="is-active"><a data-filter=".all" href="#">Tout</a></li>
+                        <li><a data-filter=".jeux" href="#">jeux</a></li>
+                        <li><a data-filter=".graphique" href="#">programmation graphique</a></li>
+                        <li><a data-filter=".web" href="#">web</a></li>
+                        <li><a data-filter=".autres" href="#">autres</a></li>
+                    </ul>
+                </div>
+                <ul class="gallery">
+
+                    <li class="all jeux">
+                        <figure class="snip1104 red">
+                            <img src="static/img/spelunca-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Project Karting
+                                    <br /><span>Courses et explosion !</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all jeux">
+                        <figure class="snip1104 red">
+                            <img src="static/img/spelunca-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Spelunca
+                                    <br /><span>Jeux d'exploration</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all jeux">
+                        <figure class="snip1104 red">
+                            <img src="static/img/suicid-smart-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Suicid Smart
+                                    <br /><span>Plateformer et casse-tête</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all jeux">
+                        <figure class="snip1104 red">
+                            <img src="static/img/le-reve-d-alix-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Le rêve d'Alix
+                                    <br /><span>Jeux d'infiltration</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all graphique">
+                        <figure class="snip1104 red">
+                            <img src="static/img/le-reve-d-alix-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Décomposition du mouvement
+                                    <br /><span>C++ traitement d'images et vidéo</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+
+
+                    <li class="all graphique">
+                        <figure class="snip1104 red">
+                            <img src="static/img/le-reve-d-alix-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Illuminate Dragoon
+                                    <br /><span>Etude de modèle d'éclairage OpenGL</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+
+                    <li class="all graphique">
+                        <figure class="snip1104 red">
+                            <img src="static/img/le-reve-d-alix-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Kranker 3D
+                                    <br /><span>Moteur de rendu 3D</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all web">
+                        <figure class="snip1104 red">
+                            <img src="static/img/sokoban-toolkit-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Sokoban toolkit
+                                    <br /><span>Joues, édites et partages tes niveaux !</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all web">
+                        <figure class="snip1104 red">
+                            <img src="static/img/krankerapfel-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    KrankerApfel
+                                    <br /><span>Blog sur la création de jeux</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all web">
+                        <figure class="snip1104 red">
+                            <img src="static/img/guns-and-roses-database-thumbnail-270x270.jpg" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Guns N' Roses Database
+                                    <br /><span>Discographie et historique des membres</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all autres">
+                        <figure class="snip1104 red">
+                            <img src="static/img/photo-architecturale-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Photographie Architectural
+                                    <br /><span>Mes meilleurs shoots</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                    <li class="all autres">
+                        <figure class="snip1104 red">
+                            <img src="static/img/photo-architecturale-thumbnail-270x270.png" alt="" />
+                            <figcaption>
+                                <h2>
+                                    Microscopie
+                                    <br /><span>Articles, photos et vidéo</span>
+                                </h2>
+                            </figcaption>
+                            <a href="{% url 'project-detail' project.id %}"></a>
+                        </figure>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $('.tabs').find('a').click(function (e) {
+                var theFilter = $(this).data('filter');
+
+                e.preventDefault();
+                $('.tabs').find('li').removeClass('is-active');
+                $(this).closest('li').addClass('is-active');
+
+                $('.gallery').find('li').show(); $('.gallery').find('li').not(theFilter).hide();
+
+            });
+
+        });
+    </script>
+</body>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Design with <strong>Bulma</strong></p>
+        <p>© T. RKT 2020</p>
+    </div>
+</footer>
+
+</html>
