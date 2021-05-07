@@ -1,0 +1,114 @@
+﻿<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>T.RKT</title>
+    <meta name="description" content="Je suis développeur gameplay et rendu 3D, avec un profile à la fois technique et artistique.
+    Je travail principalement avec Unity, openGL et  WebGL." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="../static/css/bulma/bulma.min.css">
+    <link rel="stylesheet" media="all" type="text/css" href="../static/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+    <section class="hero" id="top">
+
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
+            <nav id="navbar" class="navbar is-fixed-top">
+                <div class="navbar-brand">
+
+                    <a class="navbar-item" href="../index.html">
+                        <span class="icon" style="margin-right:5px"><i class="fas fa-glasses"></i></span>
+                        <bold>T.RKT</bold>
+                    </a>
+
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+
+                <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="https://krankerapfel.fr">
+                            <i class="fab fa-lg fa-wordpress"></i>
+                        </a>
+                        <a class="navbar-item" href="https://linkedin.com/in/tahinarakotomanampison/">
+                            <i class="fab fa-lg fa-linkedin"></i>
+                        </a>
+                        <a class="navbar-item" href="https://github.com/KrankerApfel">
+                            <i class="fab fa-lg fa-github-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </section>
+    <script type="text/javascript">
+        if ($(".navbar-burger").click(function () {
+            $("#navbarMenuHeroA, .navbar-burger").toggleClass("is-active")
+        }), $(function () {
+            $("a[href*='#']:not([href='#'])").click(function () {
+                if (location.hostname == this.hostname && this.pathname.replace(/^\//, "") == location.pathname.replace(/^\//, "")) {
+                    var e = $(this.hash);
+                    (e = e.length ? e : $("[name=" + this.hash.slice(1) + "]")).length && $("html, body").animate({ scrollTop: e.offset().top }, 1e3)
+                }
+            })
+        }), screen.width <= 1e3) {
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function () {
+                var e = window.pageYOffset;
+                prevScrollpos > e ? (document.getElementById("navbar").style.top = "-50px") : (document.getElementById("navbar").style.top = "0"), prevScrollpos = e
+            }
+        }
+    </script>
+
+    <section class="section hero">
+
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1 is-spaced">Illuminate Dragoon</h1>
+                <div class="columns">
+                    <div class="column">
+                        <h2 class="subtitle is-3">Etudes des différentes méthodes d'illumniation en OpenGL</h2>
+                    </div>
+                    <div class="column is-one-fifth">
+                        <strong>Technologies et compétences utilisées</strong></br>
+                        <span class="tag is-dark">C++</span>
+                        <span class="tag is-dark">OpenGL (GLFW)</span>
+                        <span class="tag is-dark">Shader (glsl)</span>
+                        <span class="tag is-dark">Mathématiques pour l'infographie</span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <div class="control">
+                            <div class="tags has-addons">
+                                <span class="tag is-dark">date</span>
+                                <span class="tag is-info">En cours...</span>
+                            </div>
+                        </div>
+                        <p><strong> Catégories</strong> programmation graphique</p>
+                        <a href="https://github.com/Neffros/Phong-and-Camera" style=" margin-left: 10px">Consulter le projet</a>
+                    </div>
+                </div>
+                {{project.pro_text | safe }}
+
+
+            </div>
+        </div>
+    </section>
+</body>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Design with <strong>Bulma</strong></p>
+        <p>© T. RKT 2020</p>
+    </div>
+</footer>
+
+</html>
