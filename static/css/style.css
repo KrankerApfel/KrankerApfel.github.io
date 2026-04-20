@@ -37,15 +37,6 @@ p {
   margin: 1em 0;
 }
 
-a.navbar-item {
-  color: var(--color-white) !important;
-  background-color: #000000 !important;
-}
-
-a.navbar-item:hover {
-  background-color: #f5a623 !important;
-  color: #000000 !important;
-}
 
 .header-text {
   max-width: 600px;
@@ -57,49 +48,10 @@ section:nth-child(2n) {
   background-color: #f5a623;
 }
 
-.navbar-left {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: auto;
-  z-index: 1000;
-  background-color: var(--color-black);
-  transition: top 0.3s;
-}
 
-.navbar-right {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: auto;
-  z-index: 999;
-  background-color: var(--color-black);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
 
-.navbar-right.visible {
-  opacity: 1;
-  visibility: visible;
-}
 
-.navbar-left .navbar-brand,
-.navbar-right .navbar-menu {
-  padding: 0;
-}
 
-.navbar-left .navbar-brand {
-  margin-right: 0;
-}
-
-.navbar-right .navbar-menu {
-  display: flex !important;
-}
-
-.navbar-right .navbar-end {
-  margin-right: 0;
-}
 
 .gallery {
   margin: 0 auto;
@@ -172,9 +124,6 @@ section:nth-child(2n) {
   }
 }
 
-.navbar {
-  font-family: sans-serif;
-}
 
 blockquote {
   background-color: var(--color-white);
@@ -346,6 +295,7 @@ figure.snip1104.hover .overlay-after {
 }
 
 @media screen and (max-width: 768px) {
+
   .hero-home {
     background-image: none;
     background-color: var(--color-secondary);
@@ -412,3 +362,46 @@ figure.snip1104.hover .overlay-after {
   }
 }
 
+#navbar-bottom {
+  top: 52px;
+}
+
+#navbar-bottom .navbar-menu {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  display: flex !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#navbar-bottom .navbar-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-item{
+  background-color: var(--color-black);
+}
+
+.navbar-item:hover{
+  background-color: var(--color-primary) !important;
+}
+
+.navbar-item:hover .brand-name {
+  color: var(--color-secondary);
+}
+
+
+.brand-name {
+  color: var(--color-primary);
+}
+
+.navbar-brand, #navbar-top a, #navbar-bottom a {
+  font-family: 'Big John';
+  color: var(--color-white);
+}

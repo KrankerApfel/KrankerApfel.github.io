@@ -23,31 +23,23 @@
   <body>
     <section class="hero" id="top">
       <div class="hero-head">
-        <nav id="navbar-left" class="navbar is-fixed-top navbar-left">
+        <nav id="navbar-top" class="navbar is-fixed-top navbar-top">
           <div class="navbar-brand">
-            <a class="navbar-item" href="#top"
-              ><span style="color: var(--color-primary)">Kranker</span>Apfel
+            <a class="navbar-item""
+              ><span class="brand-name">Kranker</span>Apfel
             </a>
-
-            <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
         </nav>
 
-        <nav id="navbar-right" class="navbar is-fixed-top navbar-right">
+        <nav id="navbar-bottom" class="navbar is-fixed-top">
           <div class="navbar-menu">
-            <div class="navbar-end">
               <a
-                class="navbar-item is-active"
+                class="navbar-item"
                 href="https://instagram.com/krankerapfel"
               >
                 <i class="fa-brands fa-instagram"></i>
               </a>
               <a
-                class="navbar-item is-active"
+                class="navbar-item"
                 href="https://ko-fi.com/krankerapfel"
               >
                 <i class="fa-brands fa-ko-fi"></i>
@@ -58,7 +50,6 @@
               <a class="navbar-item" href="https://github.com/KrankerApfel">
                 <i class="fab fa-lg fa-github"></i>
               </a>
-            </div>
           </div>
         </nav>
       </div>
@@ -70,10 +61,6 @@
         if (hScrollList && window.innerWidth <= 768) {
           var items = hScrollList.innerHTML;
         }
-
-        $(".navbar-burger").click(function () {
-          $("#navbarMenuHeroA, .navbar-burger").toggleClass("is-active");
-        });
 
         $(function () {
           $("a[href*='#']:not([href='#'])").click(function () {
@@ -90,36 +77,42 @@
           });
         });
 
-        function toggleNavbarRight() {
-          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          var heroHome = document.querySelector('.hero-home');
-          var triggerPoint = heroHome ? heroHome.offsetHeight : window.innerHeight;
-          var navbarRight = document.getElementById('navbar-right');
+                $('#navbar-top').click(function() {
+          var $navbarBottom = $('#navbar-bottom');
+          var $navbarItems = $navbarBottom.find('.navbar-item');
           
-          if (scrollTop > triggerPoint - 100) {
-            navbarRight.classList.add('visible');
+          if ($navbarBottom.is(':visible')) {
+            $navbarItems.each(function(index) {
+              $(this).css({
+                'opacity': '0',
+                'transform': 'translateX(-50px)',
+                'transition': 'all 0.3s ease'
+              });
+            });
+            setTimeout(function() {
+              $navbarBottom.hide();
+            }, 300);
           } else {
-            navbarRight.classList.remove('visible');
-          }
-        }
-
-        toggleNavbarRight();
-
-        window.addEventListener('scroll', toggleNavbarRight);
-
-        if (screen.width <= 1e3) {
-          var prevScrollpos = window.pageYOffset;
-          window.onscroll = function () {
-            var e = window.pageYOffset;
+            $navbarBottom.show();
+            $navbarItems.css({
+              'opacity': '0',
+              'transform': 'translateX(-50px)',
+              'transition': 'all 0.3s ease'
+            });
             
-            var navbarLeft = document.getElementById('navbar-left');
-            (prevScrollpos > e
-              ? (navbarLeft.style.top = "-50px")
-              : (navbarLeft.style.top = "0"),
-              (prevScrollpos = e));
-          };
-        }
-      });
+            $navbarItems.each(function(index) {
+              var $item = $(this);
+              setTimeout(function() {
+                $item.css({
+                  'opacity': '1',
+                  'transform': 'translateX(0)'
+                });
+              }, index * 100);
+            });
+          }
+        });
+
+              });
     </script>
 
     <section class="hero is-small hero-home">
