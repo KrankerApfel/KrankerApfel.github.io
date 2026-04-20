@@ -1,10 +1,5 @@
-@font-face {
-  font-family: 'Big John';
-  src: url('https://db.onlinewebfonts.com/t/6dd30bb1f5dfc0781eadece0b103ec0a.woff2') format('woff2'),
-       url('https://db.onlinewebfonts.com/t/6dd30bb1f5dfc0781eadece0b103ec0a.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+
 
 @font-face {
   font-family: 'Adelphe Trouble';
@@ -178,7 +173,7 @@ section:nth-child(2n) {
 }
 
 .navbar {
-  font-family: 'Big John', sans-serif;
+  font-family: sans-serif;
 }
 
 blockquote {
@@ -226,7 +221,6 @@ blockquote {
   color: var(--color-primary    );
 }
 
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
 figure.snip1104 {
   font-family: 'BBBBaskervvol', serif;
   position: relative;
