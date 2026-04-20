@@ -1,69 +1,115 @@
 ﻿<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>T.RKT</title>
-    <meta name="description" content="Je suis développeur gameplay et rendu 3D, avec un profile à la fois technique et artistique.
-    Je travail principalement avec Unity, openGL et  WebGL." />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <meta charset="UTF-8" />
+    <title>KrankerApfel</title>
+    <meta
+      name="description"
+      content="Illustrateur, écrivain et poète queer, développeur de logiciels (C# .NET, React, C++)"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />   
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="../static/css/bulma/bulma.min.css">
     <link rel="stylesheet" media="all" type="text/css" href="../static/css/style.css">
-    <script defer src="../static/js/fontawesome.js"></script>
+    <link rel="stylesheet" href="../static/fontawesome/css/all.min.css" />
+
 </head>
 <body>
     <section class="hero" id="top">
+      <div class="hero-head">
+        <nav id="navbar-top" class="navbar is-fixed-top navbar-top">
+          <div class="navbar-brand">
+            <a class="navbar-item"
+              ><span class="brand-name">Kranker</span>Apfel
+            </a>
+        </nav>
 
-        <!-- Hero head: will stick at the top -->
-        <div class="hero-head">
-            <nav id="navbar" class="navbar is-fixed-top">
-                <div class="navbar-brand">
-
-                    <a class="navbar-item" href="../index.html">
-                        <span class="icon" style="margin-right:5px"><i class="fas fa-glasses"></i></span>
-                        <bold>T.RKT</bold>
-                    </a>
-
-                    <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </div>
-
-                <div id="navbarMenuHeroA" class="navbar-menu">
-                    <div class="navbar-end">
-                        <a class="navbar-item is-active" href="https://krankerapfel.fr">
-                            <i class="fab fa-lg fa-wordpress"></i>
-                        </a>
-                        <a class="navbar-item" href="https://linkedin.com/in/tahinarakotomanampison/">
-                            <i class="fab fa-lg fa-linkedin"></i>
-                        </a>
-                        <a class="navbar-item" href="https://github.com/KrankerApfel">
-                            <i class="fab fa-lg fa-github-square"></i>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
+        <nav id="navbar-bottom" class="navbar is-fixed-top">
+          <div class="navbar-menu">
+              <a
+                class="navbar-item"
+                href="https://instagram.com/krankerapfel"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                class="navbar-item"
+                href="https://ko-fi.com/krankerapfel"
+              >
+                <i class="fa-brands fa-ko-fi"></i>
+              </a>
+              <a class="navbar-item" href="https://linktr.ee/krankerapfel">
+                <i class="fa-brands fa-linktree"></i>
+              </a>
+              <a class="navbar-item" href="https://github.com/KrankerApfel">
+                <i class="fab fa-lg fa-github"></i>
+              </a>
+          </div>
+        </nav>
+      </div>
+      <div class="hero-body" style="padding: 0;"></div>
     </section>
     <script type="text/javascript">
-        if ($(".navbar-burger").click(function () {
-            $("#navbarMenuHeroA, .navbar-burger").toggleClass("is-active")
-        }), $(function () {
-            $("a[href*='#']:not([href='#'])").click(function () {
-                if (location.hostname == this.hostname && this.pathname.replace(/^\//, "") == location.pathname.replace(/^\//, "")) {
-                    var e = $(this.hash);
-                    (e = e.length ? e : $("[name=" + this.hash.slice(1) + "]")).length && $("html, body").animate({ scrollTop: e.offset().top }, 1e3)
-                }
-            })
-        }), screen.width <= 1e3) {
-            var prevScrollpos = window.pageYOffset;
-            window.onscroll = function () {
-                var e = window.pageYOffset;
-                prevScrollpos > e ? (document.getElementById("navbar").style.top = "-50px") : (document.getElementById("navbar").style.top = "0"), prevScrollpos = e
-            }
+      $(document).ready(function() {
+        var hScrollList = document.querySelector('.h-scroll-list');
+        if (hScrollList && window.innerWidth <= 768) {
+          var items = hScrollList.innerHTML;
         }
+
+        $(function () {
+          $("a[href*='#']:not([href='#'])").click(function () {
+            if (
+              location.hostname == this.hostname &&
+              this.pathname.replace(/^\//, "") ==
+                location.pathname.replace(/^\//, "")
+            ) {
+              var e = $(this.hash);
+              (e = e.length ? e : $("[name=" + this.hash.slice(1) + "]"))
+                .length &&
+                $("html, body").animate({ scrollTop: e.offset().top }, 1e3);
+            }
+          });
+        });
+
+                $('#navbar-top').click(function() {
+          var $navbarBottom = $('#navbar-bottom');
+          var $navbarItems = $navbarBottom.find('.navbar-item');
+          
+          if ($navbarBottom.is(':visible')) {
+            $navbarItems.each(function(index) {
+              $(this).css({
+                'opacity': '0',
+                'transform': 'translateX(-50px)',
+                'transition': 'all 0.3s ease'
+              });
+            });
+            setTimeout(function() {
+              $navbarBottom.hide();
+            }, 300);
+          } else {
+            $navbarBottom.show();
+            $navbarItems.css({
+              'opacity': '0',
+              'transform': 'translateX(-50px)',
+              'transition': 'all 0.3s ease'
+            });
+            
+            $navbarItems.each(function(index) {
+              var $item = $(this);
+              setTimeout(function() {
+                $item.css({
+                  'opacity': '1',
+                  'transform': 'translateX(0)'
+                });
+              }, index * 100);
+            });
+          }
+        });
+
+              });
     </script>
 
     <section class="section hero">
