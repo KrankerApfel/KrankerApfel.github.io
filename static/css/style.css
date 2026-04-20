@@ -345,7 +345,7 @@ figure.snip1104.hover .overlay-after {
 }
 
 .hero-home {
-  background-image: url("../img/KrankerApfel_fullstack_dev_and_illustrator.png");
+  background-image: url("/static/img/KrankerApfel_fullstack_dev_and_illustrator.png");
   background-size: 70%;
   background-repeat: no-repeat;
   background-color: var(--color-secondary);
