@@ -354,10 +354,29 @@ figure.snip1104.hover .overlay-after {
 @media screen and (max-width: 768px) {
   .hero-home {
     background-image: none;
+    background-color: var(--color-secondary);
+    padding-top: 2rem;
   }
 
   .hero-home .hero-body {
     text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-home .hero-body::before {
+    content: "";
+    background-image: url("../img/KrankerApfel_fullstack_dev_and_illustrator.png");
+    background-size:180%;
+    background-repeat: no-repeat;
+    background-position:left;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    display: block;
+    flex-shrink: 0;
   }
 
   .hero-home .title,
